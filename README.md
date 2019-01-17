@@ -1,4 +1,4 @@
-# Culinating
+# Culminating
 
 package com.company;
 
