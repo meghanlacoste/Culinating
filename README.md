@@ -6,7 +6,6 @@ import java.util.*;
 import java.io.*;
 import static com.company.ProjConstants.*;
 
-
 public class Main {
 
     public static final int MAX_DATA= 1000;
@@ -14,6 +13,8 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
         /*
+        // USE PARAMERATIZED CONSTRUCTOR THAT DEFAULTS THE OBJECTS IN THE STRING ARRAY AS A HEALTHY STATE
+
    You are to write a Java program that implements many
   of the features required in the Dining Philosophers Problem (see Sections 2.3 - 2.5 from Tanenbaum's Modern
   Operating text). To perform this task you are to use timers, and perhaps randomly generated numbers to determine
@@ -79,7 +80,8 @@ public class Main {
 
         String userFileName;
 
-        String arr_philosophers[][] = new String [10][2];
+        String arr_philosophers[][] = new String [11][100];
+
 
 
         String battleName;
@@ -114,51 +116,52 @@ public class Main {
                 Scanner scanUserFile = new Scanner(userFile);
 
 
-
-
-
-
                 // ---------------------------------------------
                 // Reads in values from the file in a for loop
                 //\
 
+                int counter = 0;
+                String line;
+
                 while (scanUserFile.hasNextLine()) {
 
-                    String line = scanUserFile.nextLine();
+                    System.out.println(" START " );
 
-                    for (int i = 0; i < 12; i++) {
-                        if (scanUserFile.hasNext()) {
+                   line = scanUserFile.nextLine();
 
-                            // sets 'n' - the dimensions of the 2D array to be the first value in the file
-                            if (i == 0) {
-
-                                battleName = scanUserFile.next();
-                                System.out.print(" "+ battleName);
-
-                            } else {
-
-                                arr_philosophers[i][0]= scanUserFile.next();
-                                System.out.print(" "+ arr_philosophers[i][0]);
+                   System.out.println(" line: " + line);
 
 
-                                // stores the values in the file in the 2D array
+                    String[] temp = line.split(" ");
+                    System.out.println(" --------------- " + temp.length);
 
-                            }
+
+                    for (int i=0; i < 10; i++){
+
+                        if (i < temp.length) {
+                            arr_philosophers[i][counter] = temp[i];
+                            System.out.print(" counter " + counter + " i " + i + " " + arr_philosophers[i][counter] + " ");
 
                         } else {
-                        // ---------------------------------------------
+                            System.out.println("\n************* TOO LARGE");
 
-                            System.out.println();
-                            scanUserFile.nextLine();
+
+
+                        }
+
+
+                    }
+
+                        // ---------------------------------------------
+                    System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+                    scanUserFile.nextLine();
+                    counter +=1;
                             break;
 
 
-                    }// end for-loop
 
-                }
+                    }
 
-
-                }
 
                 // The scanner detected no other integers
                 // - closes the scanner for the file
@@ -173,6 +176,26 @@ public class Main {
                 e.printStackTrace();
             }
 
+            for (int i=1; i < 11; i++){
+
+                // change the column number depending on which battle
+
+                if (i==0){
+                    battleName =  arr_philosophers[i][0];
+                    System.out.println("Battle Name:" + battleName);
+
+                } else if (arr_philosophers[i][0]!= null){
+
+                    // this is when the philosophers class is called to run all of the states
+                    // call to run timer method
+                    //
+
+                }
+
+            }
+
+
+
 
 
 
@@ -181,4 +204,5 @@ public class Main {
 
         }// end main method
     }// end main class
+
 
