@@ -7,16 +7,14 @@ import static com.company.ProjConstants.*;
 public class Philosophers implements Philosopher {
 
 
-    // timer method
-    // start timer
-    // randNumb1 = generate random number (1, total # of philosophers)
-    // randNumb2 = generate random number (1, total # of philosophers)
-    // return both random numbers
-
+    // set total number of philosophers 
+    // get fork number {
+    
+    }
+ 
     // int setState ( int philosopherNumb , int state ) {
     //  get Randomnumbs
-    // if both random numbers are not the philosphers number (the philosopher did not pickup 2 forks)
-    // if (Randomnumb1!= philosopherNumb && Randomnumb2!= philosopher numb) {
+    // if philopsopher has two forks 
     // state-1;
     // } else {
     // state = FULL )
