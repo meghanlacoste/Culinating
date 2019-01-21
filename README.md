@@ -29,7 +29,16 @@ public class Main {
     state should be reset to "full" if not then his state should "degrade" by 1 i.e. Hungry -> starving.
      If a Philosopher "dies" then they will no longer be part of the Battle, and their associated fork is
      to be removed as well. The "Battle" will continue until only 1 Philosopher remains (wins) and all others are
-        `"dead".
+      "dead".
+      
+      - generate random nuber for which philosopher will go first. That philosopher is garunteed two forks/ 
+      - using a method similiar to the prime number program (looping through indexes by a certain amount and returning to the beginning if that goes over the max index taking the remainder as the new starting number and continuing) determine which of he philosophers will pick up next 
+      - the forks that a philosopher has availiable depends on the surrounding philosophers on either side of the array. (e. if the two philosophers on either side of them have picked up the forks they cannot pick them up).
+      - philopsophers will pick up all forks avaliable to them (the ones on either side of them) when it is their turn
+      - once all the philosopjhers have attempted to pickup forks the imer moves to the next round and a new random philosopher starts. 
+        
+        
+       
 
                 User Input:
                 - Name of file to be used, and each line will have multiple entries: <Number of Philosophers> <Battle Name 1> <Philosopher Name 1> .... <Philosopher Name "N">
