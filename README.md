@@ -7,8 +7,20 @@ import static com.company.ProjConstants.*;
 public class Philosophers implements Philosopher {
 
 
-    // set total number of philosophers 
-    // get fork number {
+    // set int total number of philosophers (String arr_philosopers [][], int index)
+    //boolean null = false;
+   // while (null=false){
+   // for (int i=0; i<11;i++){
+   // if (arr_philosopers [i][index] == null){
+  // int totalPhil = i;
+  // break;
+ // }
+  // } end while 
+  // return totalPhil
+   
+  
+  
+  // get fork number {
     
     }
  
