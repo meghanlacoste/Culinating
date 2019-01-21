@@ -86,123 +86,118 @@ public class Main {
 
         String battleName;
 
-            System.out.println("");
-            System.out.println("Please type in the file name\n");
+        System.out.println("");
+        System.out.println("Please type in the file name\n");
 
-            //create a variable s of type scanner to process input from "System.in"
-            Scanner scanSystemIn = new Scanner(System.in);
+        //create a variable s of type scanner to process input from "System.in"
+        Scanner scanSystemIn = new Scanner(System.in);
 
-            // Use the Scanner "s" to get the "next" input from "System.in"
-            userFileName = scanSystemIn.next();
+        // Use the Scanner "s" to get the "next" input from "System.in"
+        userFileName = scanSystemIn.next();
 
-            // Display the user input now stored in "userInput"
-            System.out.println("\nThe user input: " + userFileName);
+        // Display the user input now stored in "userInput"
+        System.out.println("\nThe user input: " + userFileName);
+
+
+        // ---------------------------------------------
+        //  "try" to process the file
+        //
+
+
+
+        try {
+            // --------------------------------
+            // create file, and scanner objects
+            // - file object is called tempfilenums.txt and is in your project directory
+            //   that is the same folder as the iml file
+            //
+
+            File userFile = new File(userFileName);
+            Scanner scanUserFile = new Scanner(userFile);
 
 
             // ---------------------------------------------
-            //  "try" to process the file
-            //
+            // Reads in values from the file in a for loop
+            //\
+
+            int counter = 0;
+            String line;
+
+            while (scanUserFile.hasNextLine()) {
+
+                System.out.println(" START " );
+
+                line = scanUserFile.nextLine();
+
+                System.out.println(" line: " + line);
 
 
-
-            try {
-                // --------------------------------
-                // create file, and scanner objects
-                // - file object is called tempfilenums.txt and is in your project directory
-                //   that is the same folder as the iml file
-                //
-
-                File userFile = new File(userFileName);
-                Scanner scanUserFile = new Scanner(userFile);
+                String[] temp = line.split(" ");
+                System.out.println(" --------------- " + temp.length);
 
 
-                // ---------------------------------------------
-                // Reads in values from the file in a for loop
-                //\
+                for (int i=0; i < 10; i++){
 
-                int counter = 0;
-                String line;
+                    if (i < temp.length) {
+                        arr_philosophers[i][counter] = temp[i];
+                        System.out.print(" counter " + counter + " i " + i + " " + arr_philosophers[i][counter] + " ");
 
-                while (scanUserFile.hasNextLine()) {
-
-                    System.out.println(" START " );
-
-                   line = scanUserFile.nextLine();
-
-                   System.out.println(" line: " + line);
-
-
-                    String[] temp = line.split(" ");
-                    System.out.println(" --------------- " + temp.length);
-
-
-                    for (int i=0; i < 10; i++){
-
-                        if (i < temp.length) {
-                            arr_philosophers[i][counter] = temp[i];
-                            System.out.print(" counter " + counter + " i " + i + " " + arr_philosophers[i][counter] + " ");
-
-                        } else {
-                            System.out.println("\n************* TOO LARGE");
-
-
-
+                    } else {
+                        System.out.println("\n************* TOO LARGE");
+                        if(scanUserFile.hasNextLine()) {
+                            counter +=1;
                         }
 
-
+                       break;
                     }
 
-                        // ---------------------------------------------
-                    System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-                    scanUserFile.nextLine();
-                    counter +=1;
-                            break;
-
-
-
-                    }
-
-
-                // The scanner detected no other integers
-                // - closes the scanner for the file
-                // - breaks out of the for loop
-                //
-                System.out.print("\n\nDataFileFILE has been completely READ");
-                scanUserFile.close();
-
-
-            } catch (FileNotFoundException e) {
-                System.out.println(e);
-                e.printStackTrace();
-            }
-
-            for (int i=1; i < 11; i++){
-
-                // change the column number depending on which battle
-
-                if (i==0){
-                    battleName =  arr_philosophers[i][0];
-                    System.out.println("Battle Name:" + battleName);
-
-                } else if (arr_philosophers[i][0]!= null){
-
-                    // this is when the philosophers class is called to run all of the states
-                    // call to run timer method
-                    //
 
                 }
 
+                // ---------------------------------------------
+                System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+
+
+
+
             }
 
 
+            // The scanner detected no other integers
+            // - closes the scanner for the file
+            // - breaks out of the for loop
+            //
+            System.out.print("\n\nDataFileFILE has been completely READ");
+            scanUserFile.close();
+
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+
+        for (int i=1; i < 11; i++){
+
+            // change the column number depending on which battle
+
+            if (i==0){
+                battleName =  arr_philosophers[i][0];
+                System.out.println("Battle Name:" + battleName);
+
+            } else if (arr_philosophers[i][0]!= null){
+
+                // this is when the philosophers class is called to run all of the states
+                // call to run timer method
+                //
+
+            }
+
+        }
 
 
 
 
-
-
-
-        }// end main method
-    }// end main class
+    }// end main method
+}// end main class
 
 
