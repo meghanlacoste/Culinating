@@ -1,5 +1,4 @@
 # Culminating
-
 package com.company;
 
 import java.util.*;
@@ -13,7 +12,24 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
         /*
+
+
+
         // USE PARAMERATIZED CONSTRUCTOR THAT DEFAULTS THE OBJECTS IN THE STRING ARRAY AS A HEALTHY STATE
+
+
+
+///  - generate random number for which philosopher will go first. That philosopher is garrunteed two forks/
+  - using a method similar to the prime number program (looping through indexes by a certain amount and returning to the
+  beginning if that goes over the max index taking the remainder as the new starting number and continuing) determine
+  which of he philosophers will pick up next
+  - the forks that a philosopher has available depends on the surrounding philosophers on either side of the array.
+   (e. if the two philosophers on either side of them have picked up the forks they cannot pick them up).
+  - philopsophers will pick up all forks available to them (the ones on either side of them) when it is their turn
+  - once all the philosophers have attempted to pickup forks the imer moves to the next round and a new random philosopher
+  starts.
+
+
 
    You are to write a Java program that implements many
   of the features required in the Dining Philosophers Problem (see Sections 2.3 - 2.5 from Tanenbaum's Modern
@@ -29,16 +45,7 @@ public class Main {
     state should be reset to "full" if not then his state should "degrade" by 1 i.e. Hungry -> starving.
      If a Philosopher "dies" then they will no longer be part of the Battle, and their associated fork is
      to be removed as well. The "Battle" will continue until only 1 Philosopher remains (wins) and all others are
-      "dead".
-      
-      - generate random nuber for which philosopher will go first. That philosopher is garunteed two forks/ 
-      - using a method similiar to the prime number program (looping through indexes by a certain amount and returning to the beginning if that goes over the max index taking the remainder as the new starting number and continuing) determine which of he philosophers will pick up next 
-      - the forks that a philosopher has availiable depends on the surrounding philosophers on either side of the array. (e. if the two philosophers on either side of them have picked up the forks they cannot pick them up).
-      - philopsophers will pick up all forks avaliable to them (the ones on either side of them) when it is their turn
-      - once all the philosopjhers have attempted to pickup forks the imer moves to the next round and a new random philosopher starts. 
-        
-        
-       
+        `"dead".
 
                 User Input:
                 - Name of file to be used, and each line will have multiple entries: <Number of Philosophers> <Battle Name 1> <Philosopher Name 1> .... <Philosopher Name "N">
@@ -87,6 +94,9 @@ public class Main {
                 - Please skim read Sections 2.3 - 2.5 from Tanenbaum's Modern Operating systems section 2.5 contains a description of the problem.
          */
 
+
+
+
         String userFileName;
 
         String arr_philosophers[][] = new String [11][100];
@@ -95,118 +105,150 @@ public class Main {
 
         String battleName;
 
-        System.out.println("");
-        System.out.println("Please type in the file name\n");
+            System.out.println("");
+            System.out.println("Please type in the file name\n");
 
-        //create a variable s of type scanner to process input from "System.in"
-        Scanner scanSystemIn = new Scanner(System.in);
+            //create a variable s of type scanner to process input from "System.in"
+            Scanner scanSystemIn = new Scanner(System.in);
 
-        // Use the Scanner "s" to get the "next" input from "System.in"
-        userFileName = scanSystemIn.next();
+            // Use the Scanner "s" to get the "next" input from "System.in"
+            userFileName = scanSystemIn.next();
 
-        // Display the user input now stored in "userInput"
-        System.out.println("\nThe user input: " + userFileName);
+            // Display the user input now stored in "userInput"
+            System.out.println("\nThe user input: " + userFileName);
 
-
-        // ---------------------------------------------
-        //  "try" to process the file
-        //
-
-
-
-        try {
-            // --------------------------------
-            // create file, and scanner objects
-            // - file object is called tempfilenums.txt and is in your project directory
-            //   that is the same folder as the iml file
-            //
-
-            File userFile = new File(userFileName);
-            Scanner scanUserFile = new Scanner(userFile);
+             System.out.println("\n==================================================\n");
 
 
             // ---------------------------------------------
-            // Reads in values from the file in a for loop
-            //\
-
-            int counter = 0;
-            String line;
-
-            while (scanUserFile.hasNextLine()) {
-
-                System.out.println(" START " );
-
-                line = scanUserFile.nextLine();
-
-                System.out.println(" line: " + line);
+            //  "try" to process the file
+            //
 
 
-                String[] temp = line.split(" ");
-                System.out.println(" --------------- " + temp.length);
+
+            try {
+                // --------------------------------
+                // create file, and scanner objects
+                // - file object is called tempfilenums.txt and is in your project directory
+                //   that is the same folder as the iml file
+                //
+
+                File userFile = new File(userFileName);
+                Scanner scanUserFile = new Scanner(userFile);
 
 
-                for (int i=0; i < 10; i++){
+                // ---------------------------------------------
+                // Reads in values from the file in a for loop
+                //\
 
-                    if (i < temp.length) {
-                        arr_philosophers[i][counter] = temp[i];
-                        System.out.print(" counter " + counter + " i " + i + " " + arr_philosophers[i][counter] + " ");
+                int counter = 0;
+                String line;
 
-                    } else {
-                        System.out.println("\n************* TOO LARGE");
-                        if(scanUserFile.hasNextLine()) {
-                            counter +=1;
+                while (scanUserFile.hasNextLine()) {
+
+                    //System.out.println(" START " );
+
+                   line = scanUserFile.nextLine();
+
+                   //System.out.println(" line: " + line);
+
+
+                    String[] temp = line.split(" ");
+                    //System.out.println(" --------------- " + temp.length);
+
+
+                    for (int i=0; i < 10; i++){
+
+                        if (i < temp.length) {
+                            arr_philosophers[i][counter] = temp[i];
+                            //System.out.print(" counter " + counter + " i " + i + " " + arr_philosophers[i][counter] + " ");
+                            System.out.print(arr_philosophers[i][counter] + " ");
+
+                        } else {
+                            if(scanUserFile.hasNextLine()) {
+                                counter +=1;
+                            }
+
+                            break;
                         }
 
-                       break;
+
                     }
+
+                    // ---------------------------------------------
+                    System.out.println("\n==================================================\n");
+
+
 
 
                 }
 
-                // ---------------------------------------------
-                System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 
-
-
-
-            }
-
-
-            // The scanner detected no other integers
-            // - closes the scanner for the file
-            // - breaks out of the for loop
-            //
-            System.out.print("\n\nDataFileFILE has been completely READ");
-            scanUserFile.close();
-
-
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-            e.printStackTrace();
-        }
-
-        for (int i=1; i < 11; i++){
-
-            // change the column number depending on which battle
-
-            if (i==0){
-                battleName =  arr_philosophers[i][0];
-                System.out.println("Battle Name:" + battleName);
-
-            } else if (arr_philosophers[i][0]!= null){
-
-                // this is when the philosophers class is called to run all of the states
-                // call to run timer method
+                // The scanner detected no other integers
+                // - closes the scanner for the file
+                // - breaks out of the for loop
                 //
+                System.out.print("\n\nDataFileFILE has been completely READ\n\n");
+                scanUserFile.close();
+
+
+            } catch (FileNotFoundException e) {
+                System.out.println(e);
+                e.printStackTrace();
+            }
+
+
+
+            for (int i=0; i < 11; i++){
+
+                // change the column number depending on which battle
+
+                if (i==0){
+                    battleName =  arr_philosophers[i][0];
+                    System.out.println("Battle Name:" + battleName + "\n");
+
+                } else if (arr_philosophers[i][0]!= null){
+
+                   // Philosophers PI = new Philosophers(i,FULL);
+
+
+
+                    // this is when the philosophers class is called to run all of the states
+                    // call to run timer method
+                    //
+
+                }
 
             }
 
-        }
+
+            Philosophers P = new Philosophers();
+
+              System.out.println("total number of philosophers: " + P.totalPhil(arr_philosophers,0));
+
+              P.transferArray(arr_philosophers,0);
+
+              int random = (int)(Math.random() * P.totalPhil(arr_philosophers,0) + 1);
+              System.out.println ("first philosopher to eat: " + random);
+
+              // send philosopher and state to the philosophers class
+        // create temp int array with each of the philosophers number and in the second column their state (FULL,HUNGRY
+        // STARVING or DEAD)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
     }// end main method
-}// end main class
-
+    }// end main class
 
