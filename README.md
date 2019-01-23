@@ -132,19 +132,19 @@ public class Philosophers implements Philosopher {
 
                 // default case where the index falls
 
-                if ((int_arr_phil[primeIndex-1][1] == 0) && (int_arr_phil[primeIndex][1] == 0 && (forks>=2))){
+                if ((int_arr_phil[primeIndex-1][1] == 0) && (int_arr_phil[primeIndex+1][1] == 0 && (forks>=2))){
 
                     int_arr_phil[primeIndex][1] = 2;
                     forks -=2;
 
                 } else {
 
-                    int_arr_phil[primeIndex-1][1] = 0;
+                    int_arr_phil[primeIndex][1] = 0;
                 }
 
             }
 
-
+       // System.out.println (" i " + i + "primeIndex" +  primeIndex + " arr")
 
         }
 
@@ -160,11 +160,11 @@ public class Philosophers implements Philosopher {
             switch (int_arr_phil[i][1]){
 
                 case 0: {
-                    int_arr_phil[i][2] = FULL;
+                    int_arr_phil[i][2] -= 1;
                 }
 
                 case 2: {
-                    int_arr_phil[i][2] -= 1;
+                    int_arr_phil[i][2] = FULL;
                 }
 
             }
@@ -182,4 +182,5 @@ public class Philosophers implements Philosopher {
 
 
 }// end class
+
 
