@@ -39,9 +39,9 @@ public class Philosophers implements Philosopher {
         while (!invalid) {
             for (int i = 0; i < 11; i++) {
 
-                if (arr_phil[i][index] != null) {
+                if (arr_phil[i][index] != null && arr_phil[i][index]!="INVALID") {
 
-                    totalPhil = i;
+                    totalPhil +=1;
 
                 } else {
 
@@ -68,10 +68,13 @@ public class Philosophers implements Philosopher {
             } else {
                 int_arr_phil[i - 1][0] = INVALID;
                 int_arr_phil[i - 1][1] = INVALID;
-                int_arr_phil[i - 1][1] = INVALID;
+                int_arr_phil[i - 1][2] = INVALID;
             }
 
+            System.out.println( i-1 + " " + i + " " +  int_arr_phil[i - 1][1] + " " + int_arr_phil[i - 1][2]);
+
         }
+
 
     }
 
@@ -80,21 +83,22 @@ public class Philosophers implements Philosopher {
 
 
 
-    public void setForks(int firstPhil) {
+    public void setState(int firstPhil) {
 
 
         int_arr_phil[firstPhil-1][1] = 2;
 
 
-        int forks = totalPhil-2;
+        int forks = totalPhil;
 
 
-       int primeIndex = 0;
+        int primeIndex = firstPhil-1;
 
         for (int i = 0; i < totalPhil; i++){
 
             // Use the prime value and maximum number of data items to determine the next index
-            primeIndex = (PRIMEVALUE * i) % (totalPhil-1);
+           // primeIndex = (PRIMEVALUE * i) % (totalPhil-1);
+            System.out.println("********  " + primeIndex);
 
             // special case that checks if it is the first value in the array (in which case it will
             // share a side with the last philosopher in the array
@@ -105,12 +109,14 @@ public class Philosophers implements Philosopher {
 
 
                     int_arr_phil[0][1] = 2;
-                    forks -= 2;
+                    int_arr_phil[0][2] = FULL;
+                        forks -= 2;
 
 
                 } else {
 
                     int_arr_phil[0][1] = 0;
+                    int_arr_phil[0][2] -= 1;
                 }
 
                 // special case that checks if it is the first value in the array (in which case it will
@@ -121,11 +127,13 @@ public class Philosophers implements Philosopher {
                 if ((int_arr_phil[primeIndex-1][1] == 0) && (int_arr_phil[0][1] == 0) && (forks>=2)){
 
                     int_arr_phil[primeIndex][1] = 2;
+                    int_arr_phil[primeIndex][2] = FULL;
                     forks -= 2;
 
                 } else {
 
-                   int_arr_phil[primeIndex][1] = 0;
+                    int_arr_phil[primeIndex][1] = 0;
+                    int_arr_phil[primeIndex][2] -=1;
                 }
 
             } else {
@@ -135,16 +143,23 @@ public class Philosophers implements Philosopher {
                 if ((int_arr_phil[primeIndex-1][1] == 0) && (int_arr_phil[primeIndex+1][1] == 0 && (forks>=2))){
 
                     int_arr_phil[primeIndex][1] = 2;
+                    int_arr_phil[primeIndex][2] = FULL;
+
                     forks -=2;
 
                 } else {
 
                     int_arr_phil[primeIndex][1] = 0;
+                    int_arr_phil[primeIndex][2] -=1;
                 }
 
             }
 
-       // System.out.println (" i " + i + "primeIndex" +  primeIndex + " arr")
+            // System.out.println (" i " + i + "primeIndex" +  primeIndex + " arr")
+            System.out.println( primeIndex + " " +  int_arr_phil[primeIndex][1] + " " + int_arr_phil[primeIndex][2]);
+
+            // Use the prime value and maximum number of data items to determine the next index
+            primeIndex = (primeIndex + PRIMEVALUE) % totalPhil;
 
         }
 
@@ -153,23 +168,6 @@ public class Philosophers implements Philosopher {
     }
 
 
-    public void setState (){
-
-        for (int i=0; i<totalPhil; i++){
-
-            switch (int_arr_phil[i][1]){
-
-                case 0: {
-                    int_arr_phil[i][2] -= 1;
-                }
-
-                case 2: {
-                    int_arr_phil[i][2] = FULL;
-                }
-
-            }
-        }
-    }
 
 
     public int getState (int phil_num){
