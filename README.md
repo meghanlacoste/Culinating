@@ -1,5 +1,5 @@
 # Culminating
-ackage com.company;
+package com.company;
 
 import java.util.*;
 import java.io.*;
@@ -197,7 +197,7 @@ public class Main {
             e.printStackTrace();
         }
 
-
+        int numbDead = 0;
 
         for (int i=0; i < 11; i++){
 
@@ -231,9 +231,18 @@ public class Main {
         int random = (int)(Math.random() * P.totalPhil(arr_philosophers,0) + 1);
         System.out.println ("first philosopher to eat: " + random);
 
-        P.setForks(random);
-        P.setState();
-        System.out.println(P.getState(2));
+        P.setState(random);
+       // P.setState();
+
+        for (int i=1; i <= P.totalPhil(arr_philosophers,0); i++){
+            System.out.println("---------------");
+            System.out.println(P.getState(i));
+
+
+
+
+
+        }
 
         // send philosopher and state to the philosophers class
         // create temp int array with each of the philosophers number and in the second column their state (FULL,HUNGRY
