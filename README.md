@@ -224,22 +224,56 @@ public class Main {
 
         Philosophers P = new Philosophers();
 
-        System.out.println("total number of philosophers: " + P.totalPhil(arr_philosophers,0));
+        int totalPhil = P.totalPhil(arr_philosophers,0);
+        System.out.println("total number of philosophers: " + totalPhil);
 
         P.transferArray(arr_philosophers,0);
-
-        int random = (int)(Math.random() * P.totalPhil(arr_philosophers,0) + 1);
+        int random = (int )(Math.random() * totalPhil + 1);
         System.out.println ("first philosopher to eat: " + random);
 
-        P.setState(random);
-       // P.setState();
+       int nextPrime =  P.findNextPrime(P.totalPhil(arr_philosophers,0));
+       System.out.println( "next prime " + nextPrime );
 
-        for (int i=1; i <= P.totalPhil(arr_philosophers,0); i++){
+
+        P.setState(random, nextPrime);
+        // P.setState();
+
+        for (int i=1; i <= totalPhil; i++){
             System.out.println("---------------");
-            System.out.println(P.getState(i));
+            //System.out.println(" i " + i + " " + P.getState(i));
+
+            switch (P.getState(i)){
+
+                case FULL: {
+                    System.out.println("Name: " + arr_philosophers[i][0]+ "State: " + "Full");
+
+                    break;
+                }
+
+                case HUNGRY: {
+
+                    System.out.println("Name: " + arr_philosophers[i][0]+ "State: " + "Hungry");
+
+                    break;
+                }
+
+                case STARVING: {
+
+                    System.out.println("Name: " + arr_philosophers[i][0]+ "State: " + "Starving");
+
+                    break;
+                }
+
+                case DEAD: {
+
+                    System.out.println("Name: " + arr_philosophers[i][0]+ "State: " + "Dead");
+                    // remove philosopher from array by setting the value to null or invalid
+                    // you will have to remake your methods so it skips over "dead" or moves everything down one in the array
+                    break;
+                }
 
 
-
+            }
 
 
         }
@@ -264,4 +298,6 @@ public class Main {
 
     }// end main method
 }// end main class
+
+
 
