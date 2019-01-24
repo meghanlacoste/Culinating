@@ -197,7 +197,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        int numbDead = 0;
+
 
         for (int i=0; i < 11; i++){
 
@@ -226,55 +226,86 @@ public class Main {
 
         int totalPhil = P.totalPhil(arr_philosophers,0);
         System.out.println("total number of philosophers: " + totalPhil);
-
         P.transferArray(arr_philosophers,0);
-        int random = (int )(Math.random() * totalPhil + 1);
-        System.out.println ("first philosopher to eat: " + random);
 
-       int nextPrime =  P.findNextPrime(P.totalPhil(arr_philosophers,0));
-       System.out.println( "next prime " + nextPrime );
+        int numbDead = 0;
+        while (totalPhil-numbDead > 1) {
 
+            boolean validRandom = false;
 
-        P.setState(random, nextPrime);
-        // P.setState();
+            // while loop executes until the random number generated is the index position of an alive
+            while (validRandom == false) {
+                int random = (int )(Math.random() * totalPhil + 1);
 
-        for (int i=1; i <= totalPhil; i++){
-            System.out.println("---------------");
-            //System.out.println(" i " + i + " " + P.getState(i));
+                if (arr_philosophers[random][0] != null){
+                    System.out.println ("first philosopher to eat: " + random);
 
-            switch (P.getState(i)){
+                    int nextPrime =  P.findNextPrime(P.totalPhil(arr_philosophers,0));
+                    System.out.println( "next prime " + nextPrime );
 
-                case FULL: {
-                    System.out.println("Name: " + arr_philosophers[i][0]+ "State: " + "Full");
-
-                    break;
+                    // calls on the philosopher class passing the random number and the next prime as
+                    // an argument
+                    P.setState(random, nextPrime);
+                    validRandom=true;
                 }
 
-                case HUNGRY: {
+            }
 
-                    System.out.println("Name: " + arr_philosophers[i][0]+ "State: " + "Hungry");
 
-                    break;
-                }
+            for (int i=1; i <= totalPhil; i++){
+                if (arr_philosophers[i][0]!=null) {
 
-                case STARVING: {
 
-                    System.out.println("Name: " + arr_philosophers[i][0]+ "State: " + "Starving");
+                    System.out.println("-------------------------");
 
-                    break;
-                }
+                    switch (P.getState(i)) {
 
-                case DEAD: {
+                        case FULL: {
+                            System.out.println("Name: " + arr_philosophers[i][0] + " State: " + "Full");
 
-                    System.out.println("Name: " + arr_philosophers[i][0]+ "State: " + "Dead");
-                    // remove philosopher from array by setting the value to null or invalid
-                    // you will have to remake your methods so it skips over "dead" or moves everything down one in the array
-                    break;
-                }
+                            break;
+                        }
+
+                        case HUNGRY: {
+
+                            System.out.println("Name: " + arr_philosophers[i][0] + " State: " + "Hungry");
+
+                            break;
+                        }
+
+                        case STARVING: {
+
+                            System.out.println("Name: " + arr_philosophers[i][0] + " State: " + "Starving");
+
+                            break;
+                        }
+
+                        case DEAD: {
+
+                            System.out.println("Name: " + arr_philosophers[i][0] + " State: " + "Dead");
+                            arr_philosophers[i][0] = null;
+
+                            numbDead += 1;
+                            // remove philosopher from array by setting the value to null or invalid
+                            // you will have to remake your methods so it skips over "dead" or moves everything down one in the array
+                            break;
+                        }
+
+                        default:{
+                            arr_philosophers[i][0] = null;
+                            numbDead += 1;
+                        }
+
+
+                    }
+
+
+                }// end if statement that checks whether the value is null
 
 
             }
 
+            System.out.println("-------------------------");
 
         }
 
@@ -298,6 +329,3 @@ public class Main {
 
     }// end main method
 }// end main class
-
-
-
