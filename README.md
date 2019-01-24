@@ -40,21 +40,21 @@ public class Philosophers implements Philosopher {
         boolean invalid = false;
         totalPhil = -1;
 
-        while (!invalid) {
+       // while (!invalid) {
             for (int i = 0; i < 11; i++) {
 
                 if (arr_phil[i][index] != null) {
 
                     totalPhil +=1;
 
-                } else {
+                } //else {
 
-                    invalid = true;
-                    break;
-                }
+                   // invalid = true;
+                   // break;
+               // }
 
             }// end for
-        } //end while
+      //  } //end while
         return totalPhil;
     }
 
@@ -105,8 +105,11 @@ public class Philosophers implements Philosopher {
 
 
 
-    public void setState(int firstPhil , int PRIMEVALUE) {
+    public void setState(int firstPhil , int primeValue) {
 
+        for (int i=0; i< totalPhil; i++){
+            int_arr_phil[i][1]=0;
+        }
 
         int_arr_phil[firstPhil-1][1] = 2;
 
@@ -118,8 +121,6 @@ public class Philosophers implements Philosopher {
 
         for (int i = 0; i < totalPhil; i++){
 
-            // Use the prime value and maximum number of data items to determine the next index
-           // primeIndex = (PRIMEVALUE * i) % (totalPhil-1);
             System.out.println("********  " + int_arr_phil[primeIndex][0] );
 
             // special case that checks if it is the first value in the array (in which case it will
@@ -162,7 +163,19 @@ public class Philosophers implements Philosopher {
 
                 // default case where the index falls
 
+
+                    if ((int_arr_phil[primeIndex-1][1] == 0) && (int_arr_phil[primeIndex+1][1] == 0 && (forks>=2))){
+
+
+                        int_arr_phil[primeIndex][1] = 2;
+                        int_arr_phil[primeIndex][2] = FULL;
+
+                        forks -=2;
+
+                }
+
                 if ((int_arr_phil[primeIndex-1][1] == 0) && (int_arr_phil[primeIndex+1][1] == 0 && (forks>=2))){
+
 
                     int_arr_phil[primeIndex][1] = 2;
                     int_arr_phil[primeIndex][2] = FULL;
@@ -181,16 +194,27 @@ public class Philosophers implements Philosopher {
             System.out.println( primeIndex + " " +   int_arr_phil[primeIndex][0] + " " + int_arr_phil[primeIndex][1] + " " + int_arr_phil[primeIndex][2]);
 
             // Use the prime value and maximum number of data items to determine the next index
-           // int sqrt = (int) Math.sqrt(totalPhil);
-            primeIndex = (primeIndex + PRIMEVALUE) % (totalPhil);
-           // System.out.println("&&&&&&&&&&&&&&&& " + primeIndex);
+
+            boolean valid = false;
+
+            int previousindex = primeIndex;
+
+            while (!valid){
+
+                primeIndex = (primeIndex + primeValue) % (totalPhil);
+
+                if ((int_arr_phil[primeIndex][1]!= INVALID) && (int_arr_phil[primeIndex][2]!=0) && (primeIndex!=previousindex)){
+
+                    valid=true;
+                }
+            }
+
 
         }
 
 
 
     }
-
 
 
 
